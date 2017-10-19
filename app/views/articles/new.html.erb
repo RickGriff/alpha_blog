@@ -12,3 +12,14 @@
 <%= f.submit %>
 </p>
 <% end %>
+
+<% if @article.errors.any? #if any problems creating forms, display errors %>
+<h2>The following errors prevented the article from getting created</h2>
+<ul>
+<% @article.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>
+
+<%= link_to "Back to Articles Listing", articles_path %>

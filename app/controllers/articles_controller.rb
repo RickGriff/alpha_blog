@@ -34,7 +34,13 @@ class ArticlesController < ApplicationController
   def show
   @article = Article.find(params[:id])  #params is a hash of the entry’s fields.  ID, title, #desc, etc.
   end
-
+  
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    flash[:notice] = "Article was successfully deleted"
+    redirect_to articles_path
+  end
 
   private
   def article_params

@@ -1,0 +1,26 @@
+<!--Check for errors, if any, loop through and render each error message as a bullet point. -->
+<% if obj.errors.any? #if any problems creating forms, display errors %>
+
+<div class ="row">
+    <div class = "col-xs-8 col-xs-offset-2">
+        
+        <!--Bootstrap styling for the "card" -->
+        <div class="card card-inverse card-danger" padding = 5px>
+          <div class="card-block">
+            <blockquote class="card-blockquote">
+                <h2 class = "card-title" padding = "5px">
+                <%= pluralize(obj.errors.count, "error") %>
+                prohibited the article from being saved:
+                </h2>
+                    <ul>
+                    <!--listing the error messages that occured, as bullet points-->
+                    <% obj.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+            </blockquote>
+          </div>
+    </div>
+</div>
+</div>
+<% end %>

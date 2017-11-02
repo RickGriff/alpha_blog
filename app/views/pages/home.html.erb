@@ -3,20 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
 
   </head>
   <body>
 
     <div class="container">
-      <h1>Home header test</h1>
-      <div class="jumbotron">
-        <h1>Bootstrap Tutorial</h1>
-        <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing
-        responsive, mobile-first projects on the web.</p>
+      <br/>
+      <br/>
+    <div class="center jumbotron">
+        <h1>Alpha Blog</h1>
+        <%= link_to "Sign Up Now", articles_path, class: "btn btn-primary btn-lg btn-xlarge"%> 
+        
       </div>
-      <p>This is some text.</p>
-      <p>This is another text.</p>
+      
+      <div class="panel panel-success">Test Panel</div>
       
       <%= link_to "About", about_path %><br/>
       <br/>
@@ -24,9 +25,13 @@
       <br/>
       
       
-       <%= image_tag'COMMA.JPG' %>
+       
     </div>
-   
+   <div class = "container">
+   <%= image_tag'COMMA.JPG' %>
+   <br/>
+   <br/>
+   </div>
   </body>
 </html>
 

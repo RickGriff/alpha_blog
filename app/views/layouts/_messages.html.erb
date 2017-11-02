@@ -1,5 +1,15 @@
+
+
+<!--loop through the temporary flash hash and display any messages stored from the previous action-->
+
+
+<div class = "row">
+  <div class = "col-xs-10 col-xs-offset-1"> 
 <% flash.each do |name, msg| %>
-<ul>
-<li><%= msg %></li>
-</ul>
+<div class = 'alert alert-<%= "#{name}" %>'> <!--create a div with class dependent on the nature of the message - e.g. success, error, etc -->
+<a href = "#" class = "close" data-dimiss = "alert">&#215l</a> <!--Bootstrap 'X' button that closes the alert -->
+<%= content_tag :div, msg, :id => "flash#{name}" if msg.is_a?(String) %> <!-- if message is a string, generate a div around the message with CSS ID = "flash_name" -->
+</div>
 <% end %>
+</div>
+</div>

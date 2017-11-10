@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   
+  def index
+    @users = User.all
+  end
+  
   def new
     @user= User.new
   end
@@ -16,11 +20,6 @@ class UsersController < ApplicationController
     
   end
   
-  def user_params   # We need to call a permit method to get user's params.  Params seem to be stored in some general hash, with a user key, then need to permit it's values.
-    params.require(:user).permit(:username, :email, :password)
-  end
-  
-  
   def edit
     @user = User.find(params[:id])
   end
@@ -35,8 +34,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def show 
+    @user = User.find(params[:id])
+  end
   
-  
+  private
+  def user_params   # We need to call a permit method to get user's params.  Params seem to be stored in some general hash, with a user key, then need to permit it's values.
+    params.require(:user).permit(:username, :email, :password)
+  end
   
   
   

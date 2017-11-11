@@ -3,8 +3,9 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   
   def index
-  @all_articles = Article.all
+  @articles = Article.paginate( page: params[:page], per_page: 5 )
   end
+  
   def new #so, When you load .../articles/new, you are actually also instantiating a new @article variable.
     @article = Article.new
   end

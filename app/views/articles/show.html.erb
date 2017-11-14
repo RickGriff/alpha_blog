@@ -25,11 +25,15 @@
     <%= simple_format(@article.description) %> <!-- simple_format - rails method that just nicely styles bits-->
   
     <div class = "article-actions">
+      <% if logged_in? && current_user == @article.user %>   <!-- Edit and Delete actions only available if article is owned by logged in current_user -->
       <%= link_to "Edit This Article", edit_article_path(@article), class: "btn btn-xs btn-primary" %>   
-      <%= link_to "Back to Articles Listing", articles_path, class: "btn btn-xs btn-primary" %>
+      
       <%= link_to "Delete this Article", article_path(@article), method: :delete, 
                                               data:  {confirm: "Are you sure you want to delete it?"}, 
                                               class: "btn btn-xs btn-danger" %> 
+      <% end %>                                     
+                                              
+      <%= link_to "Back to Articles Listing", articles_path, class: "btn btn-xs btn-primary" %>
     </div>
   </div>
   <hr>

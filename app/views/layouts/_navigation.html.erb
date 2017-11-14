@@ -17,21 +17,64 @@
         <!--<a class="nav-link" href="#">Link</a>-->
         <%= link_to "Articles", articles_path, class: "nav-link" %>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Actions
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <!--<a class="dropdown-item" href="#">Action</a>-->
-          <%= link_to "New Article", new_article_path, class: "dropdown-item" =%>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <!--<a class="nav-link" href="#">Link</a>-->
+        <%= link_to "Users", users_path, class: "nav-link" %>
       </li>
+      
+      <!-- Articles Actions Dropdown -->
+      <% if logged_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Actions
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <%= link_to "New Article", new_article_path, class: "dropdown-item" %>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      <% end %>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <% if logged_in? %>
+        <li class="nav-item mr-auto">
+          <!-- default bootstrap link: <a class="nav-link" href="#">Link</a>-->
+          <%= link_to "Log Out", logout_path, method: :delete, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown mr-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Your Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <!--<a class="dropdown-item" href="#">Action</a>-->
+            <%= link_to "Edit Your Profile", edit_user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "View Your Profile", user_path(current_user), class: "dropdown-item" %>
+            
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Log In", login_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", signup_path, class: "nav-link" %>
+        </li>
+      <% end %>
+     
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

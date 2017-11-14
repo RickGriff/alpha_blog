@@ -16,8 +16,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params) 
     
     if @user.save #if it passes validations and hits the DB
+      session[:user_id] = @user.id
       flash[:success] =  "Welcome to the Alpha Blog #{:username}!"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'  #if doesnt save, it re-loads the new page.  New page will render any errors that occurred, because that's coded into the New page.
     end

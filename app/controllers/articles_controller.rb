@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   def create
     
     @article = Article.new(article_params)
-    @article.user = User.first  #This should create all new articles belonging to the first user?
+    @article.user = current_user  #This should create all new articles belonging to the current logged in user.
     if @article.save
       flash[:success] = "Article was successfully created"
       redirect_to article_path(@article)

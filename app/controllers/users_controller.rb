@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   
   
   before_action :set_user, only: [:edit, :update, :show]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: [:destroy]
   
   def index
     @users = User.paginate(page: params[:page], per_page: 5 )
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) 
     
-    if @user.save #if it passes validations and hits the DB
+    if @user.save # this *actually saves* the user to the DB. It's not an equivalence check with ==.  It attempts to save user, and if the transaction goes through, flash is set and browser redirects
       session[:user_id] = @user.id
       flash[:success] =  "Welcome to the Alpha Blog #{:username}!"
       redirect_to user_path(@user)
@@ -41,6 +42,14 @@ class UsersController < ApplicationController
     @user_articles = @user.articles.paginate( page: params[:page], per_page: 5 )
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:danger] = "user and all articles created by user have been deleted"
+    redirect_to users_path
+  end
+  
+  
   def set_user
     @user = User.find(params[:id])
   end
@@ -51,8 +60,15 @@ class UsersController < ApplicationController
   end
   
   def require_same_user
-    if current_user != @user
+    if current_user != @user && !current_user.admin?  #Deny the action if they're not an admin or they are not the user they're trying to edit/update/delete
       flash[:danger] = "Sorry, you can only edit your own account."
+      redirect_to root_path
+    end
+  end
+  
+  def require_admin
+    if logged_in? && !current_user.admin?
+      flash[:danger] = "Sorry, only admins can delete users"
       redirect_to root_path
     end
   end

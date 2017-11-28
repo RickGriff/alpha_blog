@@ -12,12 +12,14 @@
                 <%= pluralize(obj.errors.count, "error") %>
                 prohibited the article from being saved:
                 </h2>
+                  <div class ="for-test">
                     <ul>
                     <!--listing the error messages that occured, as bullet points-->
                     <% obj.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
                     <% end %>
                     </ul>
+                  </div>
             </blockquote>
           </div>
     </div>

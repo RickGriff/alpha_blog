@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  
+  
+  resources :categories, except: [:destroy]  #create the usual CRUD DB and routes, but without Destroy action.
  
  
   # Example of regular route:

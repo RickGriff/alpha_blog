@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
     
   def logged_in?
-    !!current_user  #return true if there'a current_user, false otherwise.  (!! converts operand it's boolean -  returns truthiness.)
+    !!current_user  #return true if there'a current_user, false otherwise.  (!! converts operand to it's boolean -  returns truthiness.)
   end
   
   def require_user #check if there's a logged in user.  If none, redirect to root path with a flash error message.

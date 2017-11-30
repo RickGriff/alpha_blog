@@ -25,5 +25,4 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     assert_select 'div.for-test'
   end
    
-    
 end

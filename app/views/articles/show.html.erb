@@ -22,6 +22,15 @@
   <h4 class= "center description"> 
     <strong>Description: </strong>
   </h4>  
+  
+  <!--List the categories article is associated with. --> 
+  <!-- 'render' will actually loop through @article.categories 
+  and render the partial _category.html.erb -->
+  <% if @article.categories.any? %>
+    <p>Categories: <%= render @article.categories %> </p>
+  <% end %>
+  
+  
     <%= simple_format(@article.description) %> <!-- simple_format - rails method that just nicely styles bits-->
   
     <div class = "article-actions">

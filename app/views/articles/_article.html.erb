@@ -16,6 +16,8 @@
         </div>
       </div>
       
+      <!-- 'render' will actually loop through @article.categories 
+  and render the partial _category.html.erb -->
       <% if article.categories.any? %>
         <p>Categories: <%= render article.categories %> </p>
       <% end %>

@@ -1,7 +1,13 @@
-<h1>Category: <%= @category.name %> </h1>
+<h1 align="center">Category: <%= @category.name %> </h1>
+<br/>
 
-
-
+<!--  The Edit button -->
+<div class ="row justify-content-center"> 
+<% if logged_in? && current_user.admin? %>
+  <span class ="badge"><%= link_to "Edit Category Name", edit_category_path(@category) %></span>
+<% end %>
+</div>
+<br/>
 
 <div class ="row justify-content-center"> 
   <%= will_paginate @category_articles %> 
